@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/newpost" method="post">
+    <table style="border:2px">
+        <tr>
+            <td>
+                <label>
+                    Title:
+                </label>
+            </td>
+            <td>
+                <input type="text" id="title" name="title" value="{{ title }}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>
+                    Post:
+                </label>
+            </td>
+            <td>
+                <textarea rows="6" cols="100" name="body" value="{{ body }}" >{{ body }}</textarea>
+                <p class="error">{{error}}</p>
+            </td>
+        </tr>
+
+    </table>
+    <input type="submit" value="Add Post"/>
+</form>
+
+{% endblock %}

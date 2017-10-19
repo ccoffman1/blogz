@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if request.args %}
+    <h2 align="center" font-weight="Strong" >
+        {{blog.title}}
+    </h2>
+    <p>
+        {{blog.body}}
+    </p>
+
+    {% elif blog_query|length == 0 %}
+        <p>Go add a blog post!</p>
+
+    {% else %}
+        {% for blog in blog_query %}
+        <h2 >
+            <a href='/blog?id={{blog.id}}'>{{blog.title}}</a>
+        </h2>
+        <br>
+        <p>
+            {{blog.body}}
+        </p>
+    
+{% endfor %}    
+
+{% endif %}
+
+{% endblock %}
