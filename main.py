@@ -71,17 +71,17 @@ def signup():
         elif (len(username) < 3) or (len(password) < 3) or (len(verify) < 3):
             flash('Username and Password must be greater than three characters.')
         
-        elif (password == verify):
+        elif (password != verify):
             flash('Passwords do not match.')
-
-        elif not existing_user:
+        elif (existing_user):
+            flash('That username is already taken.')
+        else:
             new_user = User(username, password)
             db.session.add(new_user)
             db.session.commit()
             session['username'] = username
             return redirect('/')
-        else:
-            flash('That username is already taken.')
+
 
     return render_template('signup.html')
 
@@ -95,8 +95,10 @@ def logout():
 @app.route('/', methods=['POST', 'GET'])
 def index():
 
-    blog_query = Blog.query.all()
+
     owner = User.query.filter_by(username=session['username']).first()
+    blog_query = Blog.query.filter_by(owner=owner).all()
+    blogs = Blog.query.filter_by(owner=owner).all()
 
     if request.method == 'POST':
         blog_title = request.form['title']
@@ -111,10 +113,10 @@ def index():
         blog = Blog.query.get(id)
         return render_template('blog.html',blog=blog)
 
-    blogs = Blog.query.filter_by(owner=owner).all()
+    
 
     
-    return render_template('blog.html',blog_query=blog_query,blogs=blogs)
+    return render_template('blog.html',blogs=blogs,blog_query=blog_query)
 
 
 @app.route('/newpost', methods=['POST', 'GET'])
