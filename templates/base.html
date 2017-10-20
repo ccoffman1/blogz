@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Build-a-blog</title>
+        <title>Blogz</title>
         <style type="text/css">
             .error{
                 color:purple;
@@ -10,14 +10,23 @@
     </head>
     <body>
         <nav>
-            <a href="/blog" >Main Page</a>
+            <a href="/" >Main Page</a>
             <a href="/newpost" >Add A Blog Engry</a>
         </nav>
 
-        <h1 align="center">Build a Blog</h1>
-        <br>
-        <br>
+    
 
+        <div>
+            <a href='/logout'>log out</a>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            <ul>
+            {% for category,message in messages %}
+                <li class="{{category}}">{{message}}</li>
+            {% endfor %}
+            </ul>
+        {% endwith %}
 
         {% block content %}
         {% endblock %}
