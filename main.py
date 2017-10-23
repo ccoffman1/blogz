@@ -1,10 +1,16 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:blogz@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
+
+def get_resource_as_string(name, charset='utf-8'):
+    with app.open_resource(name) as f:
+        return f.read().decode(charset)
+app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
 db = SQLAlchemy(app)
 app.secret_key = 'y337kGcys&zP3adfB'
         
@@ -47,7 +53,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and user.password == password:
             session['username'] = username
-            flash("Logged in")
+            flash("Logged in", 'error')
             return redirect('/newpost')
         else:
             flash('That username and password combination doesn\'t exist.', 'error')
@@ -66,15 +72,15 @@ def signup():
 
         # validate user's data
         if (username == "") or (password == "") or (verify == ""):
-            flash('All fields must be filled out.')
+            flash('All fields must be filled out.', 'error')
 
         elif (len(username) < 3) or (len(password) < 3) or (len(verify) < 3):
-            flash('Username and Password must be greater than three characters.')
+            flash('Username and Password must be greater than three characters.', 'error')
         
         elif (password != verify):
-            flash('Passwords do not match.')
+            flash('Passwords do not match.', 'error')
         elif (existing_user):
-            flash('That username is already taken.')
+            flash('That username is already taken.', 'error')
         else:
             new_user = User(username, password)
             db.session.add(new_user)
