@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!--
 <form action="/newpost" method="post">
     <table style="border:2px">
         <tr>
@@ -20,12 +21,50 @@
                 </label>
             </td>
             <td>
-                <textarea rows="6" cols="100" name="body" value="{{ body }}" >{{ body }}</textarea>
+                <textarea rows="6" cols="100" name="body" value="{{ body }}" ></textarea>
             </td>
         </tr>
 
     </table>
     <input type="submit" value="Add Post"/>
 </form>
+-->
+
+
+<div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+               <div class="panel-title text-center">
+                       <h1 class="title">Create A New Blog Post!</h1> 
+                       <hr />
+                   </div>
+            </div> 
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="/newpost">
+                    
+                    <div class="form-group">
+                        <label for="body"></label>
+                        <input class="form-control" rows="5" id="title" name="title" value="{{ title }}" >{{ title }}</input>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="body"></label>
+                        <textarea class="form-control" rows="5" id="body" name="body" value="{{ body }}" >{{ body }}</textarea>
+                    </div>
+
+                    <div class="col-sm-4"></div>
+                    <div class="col-sm-4" style="text-align:center">
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-primary btn-lg" value="Add Post">Add Post</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-4"></div>
+                    </form>
+
+
+                </form>
+            </div>
+
 
 {% endblock %}

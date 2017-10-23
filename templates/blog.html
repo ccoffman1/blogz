@@ -2,29 +2,43 @@
 
 {% block content %}
 
-    {% if request.args %}
-    <h2 align="center" font-weight="Strong" >
-        {{blog.title}}
-    </h2>
-    <p>
-        {{blog.body}}
-    </p>
 
-    {% elif blog_query|length == 0 %}
+
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-9">
+            {% if request.args %}
+            <h2 align="center" font-weight="Strong" >
+                {{blog.title}}
+            </h2>
+            <p>
+                {{blog.body}}
+            </p> 
+    
+            {% elif blog_query|length == 0 %}
+        
         <p>Go add a blog post!</p>
 
-    {% else %}
-        {% for blog in blog_query %}
-        <h2 >
-            <a href='/?id={{blog.id}}'>{{blog.title}}</a>
-        </h2>
-        <br>
-        <p>
-            {{blog.body}}
-        </p>
-    
-{% endfor %}    
+            {% else %}
+            {% for blog in blog_query %}
 
-{% endif %}
+            <h2><a href='/?id={{blog.id}}'>{{blog.title}}</a></h2>
+            <br>
+            <p>{{blog.body}}</p>
+            <br><br>
+            
+
+        {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 
 {% endblock %} 

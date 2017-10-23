@@ -1,24 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>Blogz</title>
-        <style type="text/css">
-            .error{
-                color:purple;
-            }
-            </style>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <nav>
-            <a href="/" >Main Page</a>
-            <a href="/newpost" >Add A Blog Engry</a>
-        </nav>
+
+    <style>
 
     
+         body {
+            background: black no-repeat center fixed; /* For browsers that do not support gradients */
+            background: -webkit-linear-gradient(left top, black, rgba(16, 16, 63, 0.44)) no-repeat center fixed; /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient(bottom right, black, rgba(16, 16, 63, 0.44)) no-repeat center fixed; /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient(bottom right, black, rgba(16, 16, 63, 0.44)) no-repeat center fixed; /* For Firefox 3.6 to 15 */
+            background: linear-gradient(to bottom right, black, rgba(16, 16, 63, 0.44)) no-repeat center fixed; /* Standard syntax */
+            background-size: cover;
+            
+            color: white;
+            text-shadow: 2px 2px 0px #000;
 
-        <div>
-            <a href='/logout'>log out</a>
-        </div>
+          }
+          /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+        .row.content {height: auto;} 
+        }
+    
+    </style>
+
+    
+    <body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Main Page</a></li>
+                    <li><a href="/newpost">Add A Blog Entry</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+        </nav>
+    
+
+
 
         {% with messages = get_flashed_messages(with_categories=True) %}
             <ul>
@@ -33,3 +64,5 @@
 
     </body>
 </html>
+
+

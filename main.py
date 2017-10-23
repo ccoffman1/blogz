@@ -133,8 +133,8 @@ def post():
         body = request.form['body']
        
         if len(title) == 0 or len(body) == 0:
-            flash("Both fields must me filled out")
-            return render_template('newpost.html',title=title,body=body,error=error)
+            flash("Both fields must me filled out",'error')
+            return render_template('newpost.html',title=title,body=body)
 
 
 

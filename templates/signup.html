@@ -1,28 +1,56 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register to Blogz!</h1>
-<form action="/signup" method="post">
-    <table>
-        <tr>
-            <td><label for="username">Username</label></td>
-            <td>
-                <input name="username" type="text" value="{{ username }}">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            <td>
-                <input name="password" type="password">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="verify">Verify Password</label></td>
-            <td>
-                <input name="verify" type="password">
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Register">
-</form>
+
+
+<div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+               <div class="panel-title text-center">
+                       <h1 class="title">Register to Blogz!</h1> 
+                       <hr />
+                   </div>
+            </div> 
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="/signup">
+                    
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-4 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" value="{{ username }}" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-4 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="verify" class="cols-sm-4 control-label">Verify Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="verify" id="verify"  placeholder="Verify your password"/>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Login">Login</button>
+                    </div>
+
+                </form>
+            </div>
+
 {% endblock %}

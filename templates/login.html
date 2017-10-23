@@ -1,23 +1,49 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Log in to your blog!</h1>
-<p>If you don't have an account, click here to register. <a href="/signup"><input type="button" id="register" value="register" /></a>
-<form action="/login" method="post">
-    <table>
-        <tr>
-            <td><label for="username">Username</label></td>
-            <td>
-                <input name="username" type="text" value="{{ username }}">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            <td>
-                <input name="password" type="password">
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Login">
-</form>
+
+
+<div class="container">
+        <div class="row main">
+            <div class="panel-heading">
+               <div class="panel-title text-center">
+                       <h1 class="title">Log in to your blog!</h1>
+                       <br />
+                       <p>If you don't have an account, click here to register. <a href="/signup"><button type="button" id="register" class="btn btn-danger">Register</button></a>
+                       <hr />
+                   </div>
+            </div> 
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="/login">
+                    
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-6 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username" value="{{ username }}" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-6 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Login">Login</button>
+                    </div>
+
+                </form>
+            </div>
+
+
 {% endblock %}
