@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
+import cgi
 
 
 app = Flask(__name__)
@@ -40,7 +41,7 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup']
+    allowed_routes = ['login', 'signup', 'home', 'user_page']
     if request.endpoint not in allowed_routes and 'username' not in session:
         return redirect('/login')
 
@@ -125,6 +126,7 @@ def index():
     return render_template('blog.html',blogs=blogs,blog_query=blog_query)
 
 
+
 @app.route('/newpost', methods=['POST', 'GET'])
 def post():
 
@@ -155,6 +157,29 @@ def post():
 
     return render_template('newpost.html', title=title, body=body)
 
+
+@app.route('/home', methods=['GET','POST'])
+def home(): 
+    users = User.query.all()
+
+    return render_template('home.html',users=users)
+
+
+
+@app.route('/user-page', methods=['GET'])
+def user_page():
+
+    id = request.args.get('user')
+    user = User.query.get(id)
+
+    if user:
+        id = cgi.escape(id)
+        blogs = Blog.query.filter_by(owner_id = user.id).all()
+
+        return render_template('user-page.html',blogs=blogs)
+
+    else: 
+        redirect('/home')
 
 
 
